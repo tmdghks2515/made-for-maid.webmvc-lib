@@ -1,13 +1,12 @@
 package io.madeformaid.webmvc.jpa.converter;
 
-import io.madeformaid.webmvc.vo.enums.DescribableEnum;
 import jakarta.persistence.AttributeConverter;
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class EnumSetConverter<T extends Enum<T> & DescribableEnum> implements AttributeConverter<Set<T>, String> {
+public abstract class EnumSetConverter<T extends Enum<T>> implements AttributeConverter<Set<T>, String> {
 
     private final Class<T> enumClass;
     private static final String DELIMITER = ",";
