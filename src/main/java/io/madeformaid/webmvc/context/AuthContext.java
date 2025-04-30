@@ -25,6 +25,12 @@ public class AuthContext {
                 .orElse(null);
     }
 
+    public static String getShopId() {
+        return Optional.ofNullable(authHolder.get())
+                .map(AuthInfo::getShopId)
+                .orElse(null);
+    }
+
     public static List<String> getRoles() {
         return Optional.ofNullable(authHolder.get())
                 .map(AuthInfo::getRoles)
