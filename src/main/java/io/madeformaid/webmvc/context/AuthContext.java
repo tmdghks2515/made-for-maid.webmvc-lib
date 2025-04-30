@@ -9,8 +9,8 @@ public class AuthContext {
 
     private static final ThreadLocal<AuthInfo> authHolder = new ThreadLocal<>();
 
-    public static void set(String accountId, String userId, List<String> roles) {
-        authHolder.set(new AuthInfo(accountId, userId, roles));
+    public static void set(String accountId, String userId, String shopId, List<String> roles) {
+        authHolder.set(new AuthInfo(accountId, userId, shopId, roles));
     }
 
     public static String getAccountId() {
@@ -43,11 +43,13 @@ public class AuthContext {
     public static class AuthInfo {
         private final String accountId;
         private final String userId;
+        private final String shopId;
         private final List<String> roles;
 
-        public AuthInfo(String accountId, String userId, List<String> roles) {
+        public AuthInfo(String accountId, String userId, String shopId, List<String> roles) {
             this.accountId = accountId;
             this.userId = userId;
+            this.shopId = shopId;
             this.roles = roles != null ? roles : List.of();
         }
     }

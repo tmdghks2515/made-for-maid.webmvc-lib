@@ -12,6 +12,7 @@ public class RequestContextFilter implements Filter {
 
     private static final String ACCOUNT_ID_HEADER = "X-Account-Id";
     private static final String USER_ID_HEADER = "X-User-Id";
+    private static final String SHOP_ID_HEADER = "X-Shop-Id";
     private static final String ROLES_HEADER = "X-User-Roles";
 
     @Override
@@ -23,6 +24,7 @@ public class RequestContextFilter implements Filter {
 
             String accountId = httpRequest.getHeader(ACCOUNT_ID_HEADER);
             String userId = httpRequest.getHeader(USER_ID_HEADER);
+            String shopId = httpRequest.getHeader(SHOP_ID_HEADER);
             String rolesHeader = httpRequest.getHeader(ROLES_HEADER);
 
             List<String> roles = Optional.ofNullable(rolesHeader)
@@ -32,7 +34,7 @@ public class RequestContextFilter implements Filter {
                     .orElse(List.of());
 
             if (accountId != null && !accountId.isBlank()) {
-                AuthContext.set(accountId, userId, roles);
+                AuthContext.set(accountId, userId, shopId, roles);
             }
 
             chain.doFilter(request, response);
